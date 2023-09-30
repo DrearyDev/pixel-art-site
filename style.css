@@ -9,5 +9,20 @@ body {
 }
 
 .draw-area {
-    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+    border: 2px solid black;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.draw-area div {
+    border: 1px solid lightgray;
+    background-color: white;
+
+    /* size of grid divided by 100 gives percent for flex basis */
+    flex-basis: 6.25%;
 }
