@@ -26,3 +26,6 @@ body {
     /* size of grid divided by 100 gives percent for flex basis */
     flex-basis: 6.25%;
 }
+.draw-area div:hover {
+    background-color: #000;
+}
