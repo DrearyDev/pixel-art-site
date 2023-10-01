@@ -33,7 +33,9 @@ function createGrid() {
 createGrid();
 
 drawArea.addEventListener('mousedown', (e) => {
-    e.target.style.backgroundColor = color;
+    if (e.target.classList.contains('square')) {
+        e.target.style.backgroundColor = color;
+    };
 });
 
 window.addEventListener('mousedown', () => drawing = true);
