@@ -39,6 +39,19 @@ body {
     border: 1px solid lightgray;
 }
 
+.color-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    gap: 20px;
+}
+.color-options .current-color {
+    width: 100px;
+    height: 50px;
+    background-color: #000;
+}
+
 
 .btn-container {
     display: flex;
