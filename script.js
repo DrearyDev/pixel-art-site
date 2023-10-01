@@ -2,11 +2,14 @@
 
 const drawArea = document.querySelector('.draw-area');
 const gridLines = document.querySelector('.grid-lines-btn');
+const myRange = document.getElementById('my-range');
 
 let size = 16;
-let basisPercent = (100/size) + '%';
+myRange.value = size;
+let basisPercent = (100/size) + '%'; //percent one square should take up in drawArea
 let color = '#000';
 let drawing = false;
+
 
 for (let i = 0; i < (size ** 2); i++){
     const div = document.createElement('div');
@@ -26,7 +29,6 @@ squares.forEach(square => {
 
 window.addEventListener('mousedown', () => drawing = true);
 window.addEventListener('mouseup', () => drawing = false);
-
 drawArea.addEventListener('mouseover', (e) => {
     if (drawing === true) {
         e.target.style.backgroundColor = color;
@@ -34,7 +36,12 @@ drawArea.addEventListener('mouseover', (e) => {
 });
 
 gridLines.addEventListener('click', () => {
-    squares.forEach(div => {
-        div.classList.toggle('grid-lines');
+    squares.forEach(square => {
+        square.classList.toggle('grid-lines');
     });
+});
+
+myRange.addEventListener('click', (e) => {
+    console.log(e.target.value);
+    size = e.target.value;
 });
