@@ -16,6 +16,8 @@ function createGrid() {
 
     if (drawArea.childElementCount !== 0) {
         drawArea.innerHTML = '';
+        size = myRange.value;
+        basisPercent = (100/size) + '%';
     };
 
     for (let i = 0; i < (size ** 2); i++){
@@ -32,15 +34,14 @@ function createGrid() {
 };
 createGrid();
 
+window.addEventListener('mousedown', () => drawing = true);
+window.addEventListener('mouseup', () => drawing = false);
+
 drawArea.addEventListener('mousedown', (e) => {
     if (e.target.classList.contains('square')) {
         e.target.style.backgroundColor = color;
     };
 });
-
-window.addEventListener('mousedown', () => drawing = true);
-window.addEventListener('mouseup', () => drawing = false);
-
 
 drawArea.addEventListener('mouseover', (e) => {
 
@@ -65,7 +66,6 @@ clearCanvas.addEventListener('click', () => {
 
 myRange.addEventListener('click', (e) => {
     console.log(e.target.value);
-    size = e.target.value;
-    basisPercent = (100/size) + '%';
+
     createGrid();
 });
