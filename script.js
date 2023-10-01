@@ -2,6 +2,7 @@
 
 const drawArea = document.querySelector('.draw-area');
 const gridLinesToggle = document.querySelector('.grid-lines-btn');
+const clearCanvas = document.querySelector('.clear-canvas');
 const myRange = document.getElementById('my-range');
 
 let size = 16;
@@ -51,6 +52,12 @@ drawArea.addEventListener('mouseover', (e) => {
 gridLinesToggle.addEventListener('click', () => {
     squares.forEach(square => {
         square.classList.toggle('grid-lines');
+    });
+});
+
+clearCanvas.addEventListener('click', () => {
+    squares.forEach(square => {
+        square.style.backgroundColor = 'white';
     });
 });
 
