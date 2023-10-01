@@ -24,11 +24,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-
-.grid-lines {
-    border: 1px solid lightgray;
-}
-
 .draw-area div {
     background-color: white;
 
@@ -37,6 +32,9 @@ body {
 }
 .draw-area div:hover {
     background-color: #000;
+}
+.grid-lines {
+    border: 1px solid lightgray;
 }
 
 .btn-container {
