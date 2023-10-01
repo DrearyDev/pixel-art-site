@@ -27,22 +27,24 @@ function createGrid() {
     };
 
     squares = [...drawArea.children];
-    squares.forEach(square => {
-        square.addEventListener('mousedown', (e) => {
-            e.target.style.backgroundColor = color;
-        });
-    });
-
 
 };
 createGrid();
 
+drawArea.addEventListener('mousedown', (e) => {
+    e.target.style.backgroundColor = color;
+});
 
 window.addEventListener('mousedown', () => drawing = true);
 window.addEventListener('mouseup', () => drawing = false);
+
+
 drawArea.addEventListener('mouseover', (e) => {
+
     if (drawing === true) {
-        e.target.style.backgroundColor = color;
+        if (e.target.classList.contains('square')) {
+            e.target.style.backgroundColor = color;
+        };
     };
 });
 
