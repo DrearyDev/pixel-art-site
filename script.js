@@ -1,7 +1,7 @@
 'use strict';
 
 const drawArea = document.querySelector('.draw-area');
-const gridLines = document.querySelector('.grid-lines-btn');
+const gridLinesToggle = document.querySelector('.grid-lines-btn');
 const myRange = document.getElementById('my-range');
 
 let size = 16;
@@ -46,7 +46,7 @@ drawArea.addEventListener('mouseover', (e) => {
     };
 });
 
-gridLines.addEventListener('click', () => {
+gridLinesToggle.addEventListener('click', () => {
     squares.forEach(square => {
         square.classList.toggle('grid-lines');
     });
