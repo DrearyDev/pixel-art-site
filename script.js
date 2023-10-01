@@ -10,8 +10,8 @@ for (let i = 0; i < (size ** 2); i++){
     const div = document.createElement('div');
     div.classList.add('square');
     div.setAttribute('ondragstart', 'return false');
-    console.log((100/size).toFixed(2));
-    div.style.flexBasis = (100/size).toFixed(2);
+    // console.log((100/size).toFixed(2));
+    // div.style.flexBasis = (100/size).toFixed(2);
     drawArea.appendChild(div);
 };
 
