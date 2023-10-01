@@ -19,8 +19,11 @@ body {
     flex-wrap: wrap;
 }
 
-.draw-area div {
+.grid-lines {
     border: 1px solid lightgray;
+}
+
+.draw-area div {
     background-color: white;
 
     /* 100 divided by size of grid gives percent for flex basis */
