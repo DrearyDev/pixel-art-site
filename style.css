@@ -39,6 +39,17 @@ body {
     background-color: #000;
 }
 
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    gap: 20px;
+}
+.btn-container button {
+    padding: 10px;
+}
+
 .range-slider {
     display: flex;
     flex-direction: column;
