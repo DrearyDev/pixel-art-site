@@ -2,7 +2,7 @@
 
 const drawArea = document.querySelector('.draw-area');
 
-const gridLines = document.querySelector('.grid-lines-toggle');
+const gridLines = document.querySelector('.grid-lines-btn');
 
 let size = 16;
 let color = '#000';
