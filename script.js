@@ -34,4 +34,10 @@ drawArea.addEventListener('mouseover', (e) => {
     };
 });
 
+gridLines.addEventListener('click', () => {
+    squares.forEach(div => {
+        div.classList.toggle('grid-lines');
+    });
+});
+
 
