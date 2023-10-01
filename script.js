@@ -2,6 +2,8 @@
 
 const drawArea = document.querySelector('.draw-area');
 
+const gridLines = document.querySelector('.grid-lines-toggle');
+
 let size = 16;
 let color = '#000';
 let drawing = false;
@@ -10,8 +12,8 @@ for (let i = 0; i < (size ** 2); i++){
     const div = document.createElement('div');
     div.classList.add('square');
     div.setAttribute('ondragstart', 'return false');
-    // console.log((100/size).toFixed(2));
-    // div.style.flexBasis = (100/size).toFixed(2);
+    div.classList.toggle('grid-lines');
+
     drawArea.appendChild(div);
 };
 
@@ -22,13 +24,9 @@ squares.forEach(square => {
     });
 });
 
-window.addEventListener('mousedown', () => {
-    drawing = true;
-});
+window.addEventListener('mousedown', () => drawing = true);
 
-window.addEventListener('mouseup', () => {
-    drawing = false;
-});
+window.addEventListener('mouseup', () => drawing = false);
 
 drawArea.addEventListener('mouseover', (e) => {
     if (drawing === true) {
