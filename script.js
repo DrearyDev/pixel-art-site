@@ -9,23 +9,34 @@ myRange.value = size;
 let basisPercent = (100/size) + '%'; //percent one square should take up in drawArea
 let color = '#000';
 let drawing = false;
+let squares = [];
 
+function createGrid() {
 
-for (let i = 0; i < (size ** 2); i++){
-    const div = document.createElement('div');
-    div.classList.add('square');
-    div.setAttribute('ondragstart', 'return false');
-    div.classList.toggle('grid-lines');
-    div.style.flexBasis = basisPercent;
-    drawArea.appendChild(div);
-};
+    if (drawArea.childElementCount !== 0) {
+        drawArea.innerHTML = '';
+    };
 
-const squares = document.querySelectorAll('.square');
-squares.forEach(square => {
-    square.addEventListener('mousedown', (e) => {
-        e.target.style.backgroundColor = color;
+    for (let i = 0; i < (size ** 2); i++){
+        const div = document.createElement('div');
+        div.classList.add('square');
+        div.setAttribute('ondragstart', 'return false');
+        div.classList.add('grid-lines');
+        div.style.flexBasis = basisPercent;
+        drawArea.appendChild(div);
+    };
+
+    squares = [...drawArea.children];
+    squares.forEach(square => {
+        square.addEventListener('mousedown', (e) => {
+            e.target.style.backgroundColor = color;
+        });
     });
-});
+
+
+};
+createGrid();
+
 
 window.addEventListener('mousedown', () => drawing = true);
 window.addEventListener('mouseup', () => drawing = false);
@@ -44,4 +55,6 @@ gridLines.addEventListener('click', () => {
 myRange.addEventListener('click', (e) => {
     console.log(e.target.value);
     size = e.target.value;
+    basisPercent = (100/size) + '%';
+    createGrid();
 });
