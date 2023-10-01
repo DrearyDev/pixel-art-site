@@ -4,6 +4,7 @@ const drawArea = document.querySelector('.draw-area');
 const gridLinesToggle = document.querySelector('.grid-lines-btn');
 const clearCanvas = document.querySelector('.clear-canvas');
 const myRange = document.getElementById('my-range');
+const rangeDisplay = document.querySelector('.range-display');
 
 let size = 16;
 myRange.value = size;
@@ -64,8 +65,10 @@ clearCanvas.addEventListener('click', () => {
     });
 });
 
-myRange.addEventListener('click', (e) => {
-    console.log(e.target.value);
-
+myRange.addEventListener('mouseup', () => {
     createGrid();
 });
+
+myRange.oninput = (e) => {
+    rangeDisplay.textContent = `${e.target.value} x ${e.target.value}`;
+};
