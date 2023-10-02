@@ -15,6 +15,11 @@ body {
 }
 
 
+button {
+    padding: 10px;
+}
+
+
 .draw-area {
     width: 500px;
     height: 500px;
@@ -40,16 +45,32 @@ body {
 }
 
 .color-options {
+    width: 500px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin: 10px;
     gap: 20px;
 }
-.color-options .current-color {
+.color-options .color-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.color-options .color-preview .current-color {
     width: 100px;
     height: 50px;
     background-color: #000;
+}
+.color-options .color-preview .new-color {
+    width: 100px;
+    height: 50px;
+    background-color: #000;
+}
+.color-options .color-sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 
@@ -59,9 +80,6 @@ body {
     justify-content: center;
     margin: 10px;
     gap: 20px;
-}
-.btn-container button {
-    padding: 10px;
 }
 
 

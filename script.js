@@ -5,6 +5,9 @@ const gridLinesToggle = document.querySelector('.grid-lines-btn');
 const clearCanvas = document.querySelector('.clear-canvas');
 const myRange = document.getElementById('my-range');
 const rangeDisplay = document.querySelector('.range-display');
+const currentColor = document.querySelector('.current-color');
+
+
 
 let size = 16;
 myRange.value = size;
