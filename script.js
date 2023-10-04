@@ -7,6 +7,7 @@ const myRange = document.getElementById('my-range');
 const rangeDisplay = document.querySelector('.range-display');
 const currentColor = document.querySelector('.current-color');
 const newColor = document.querySelector('.new-color');
+const setColor = document.querySelector('.set-color');
 
 const redSlider = document.getElementById('red-slider');
 const redDisplay = document.querySelector('.red-display');
@@ -22,7 +23,11 @@ let color = '#000';
 redSlider.value = 0;
 greenSlider.value = 0;
 blueSlider.value = 0;
-let createNewColor = 'rgb(0,0,0)';
+let createNewColor = {
+    red: 0,
+    green: 0,
+    blue: 0
+};
 let drawing = false;
 let squares = [];
 
@@ -49,21 +54,33 @@ function createGrid() {
 createGrid();
 
 
+function updateNewColor(createNewColor) {
+    console.log(createNewColor);
+    newColor.style.backgroundColor = `rgb(${createNewColor.red},${createNewColor.green},${createNewColor.blue})`;
+};
+
+setColor.addEventListener('click', () => {
+    currentColor.style.backgroundColor = newColor.style.backgroundColor;
+    color = currentColor.style.backgroundColor;
+});
+
 redSlider.oninput = () => {
     redDisplay.textContent = `Red Value: ${redSlider.value}`;
+    createNewColor.red = Number(redSlider.value);
+    updateNewColor(createNewColor);
 };
 
 greenSlider.oninput = () => {
     greenDisplay.textContent = `Green Value: ${greenSlider.value}`;
+    createNewColor.green = Number(greenSlider.value);
+    updateNewColor(createNewColor);
 };
 
 blueSlider.oninput = () => {
     blueDisplay.textContent = `Blue Value: ${blueSlider.value}`;
+    createNewColor.blue = Number(blueSlider.value);
+    updateNewColor(createNewColor);
 };
-
-
-
-
 
 
 
@@ -80,11 +97,8 @@ drawArea.addEventListener('mousedown', (e) => {
 });
 
 drawArea.addEventListener('mouseover', (e) => {
-
-    if (drawing === true) {
-        if (e.target.classList.contains('square')) {
-            e.target.style.backgroundColor = color;
-        };
+    if (drawing === true && e.target.classList.contains('square')) {
+        e.target.style.backgroundColor = color;
     };
 });
 
