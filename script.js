@@ -85,7 +85,9 @@ blueSlider.oninput = () => {
 
 window.addEventListener('mousedown', () => drawing = true);
 window.addEventListener('mouseup', (e) => {
-    e.target.classList.add('clicked');
+    if (e.target.classList.contains('square')){
+        e.target.classList.add('clicked');
+    };
     drawing = false;
 });
 
