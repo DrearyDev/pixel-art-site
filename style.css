@@ -91,3 +91,17 @@ button {
 .range-slider #my-range {
     width: 500px;
 }
+
+
+.old-colors {
+    width: 500px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.old-colors div {
+    height: 50px;
+    flex: 0 0 100px;
+}

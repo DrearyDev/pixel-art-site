@@ -16,10 +16,14 @@ const greenDisplay = document.querySelector('.green-display');
 const blueSlider = document.getElementById('blue-slider');
 const blueDisplay = document.querySelector('.blue-display');
 
+const oldColors = document.querySelector('.old-colors');
+
 let size = 16;
 myRange.value = size;
 let basisPercent = (100/size) + '%'; //percent one square should take up in drawArea
 let color = '#000';
+currentColor.style.backgroundColor = color;
+newColor.style.backgroundColor = color;
 redSlider.value = 0;
 greenSlider.value = 0;
 blueSlider.value = 0;
@@ -30,6 +34,7 @@ let createNewColor = {
 };
 let drawing = false;
 let squares = [];
+let oldColorsArray = [];
 
 function createGrid() {
     if (drawArea.childElementCount !== 0) {
@@ -57,6 +62,7 @@ function updateNewColor(createNewColor) {
 };
 
 setColor.addEventListener('click', () => {
+    handleOldColors(currentColor.style.backgroundColor);
     currentColor.style.backgroundColor = newColor.style.backgroundColor;
     color = currentColor.style.backgroundColor;
 });
@@ -78,6 +84,38 @@ blueSlider.oninput = () => {
     createNewColor.blue = Number(blueSlider.value);
     updateNewColor(createNewColor);
 };
+
+function handleOldColors(oldColor) {
+    const div = document.createElement('div');
+    div.classList.add('old-color');
+    div.setAttribute('ondragstart', 'return false');
+    div.style.backgroundColor = oldColor;
+    oldColors.appendChild(div);
+    oldColorsArray = [...oldColors.children];
+};
+
+oldColors.addEventListener('click', (e) => {
+    let rgbString = e.target.style.backgroundColor.replace('rgb(', '');
+
+    rgbString = rgbString.replace(')', '');
+    rgbString = rgbString.replaceAll(' ', '');
+    rgbString = rgbString.split(',');
+
+    redSlider.value = rgbString[0];
+    redDisplay.textContent = `Red Value: ${rgbString[0]}`;
+    createNewColor.red = rgbString[0];
+
+    greenSlider.value = rgbString[1];
+    greenDisplay.textContent = `Green Value: ${rgbString[1]}`;
+    createNewColor.green = rgbString[1];
+
+    blueSlider.value = rgbString[2];
+    blueDisplay.textContent = `Blue Value: ${rgbString[2]}`;
+    createNewColor.blue = rgbString[2];
+
+    updateNewColor(createNewColor);
+
+});
 
 
 
