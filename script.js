@@ -156,6 +156,7 @@ gridLinesToggle.addEventListener('click', () => {
     squares.forEach(square => {
         square.classList.toggle('grid-lines');
     });
+    gridLinesToggle.classList.toggle('toggled-on');
 });
 
 clearCanvas.addEventListener('click', () => {
@@ -170,4 +171,5 @@ myRange.addEventListener('mouseup', () => {
 
 myRange.oninput = (e) => {
     rangeDisplay.textContent = `${e.target.value} x ${e.target.value}`;
+    gridLinesToggle.classList.remove('toggled-on');
 };

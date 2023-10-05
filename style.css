@@ -16,7 +16,17 @@ body {
 
 
 button {
+    color: black;
+    background-color: white;
     padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+button:hover {
+    background-color: whitesmoke;
+}
+button:active {
+    background-color: lightgray;
 }
 
 
@@ -79,6 +89,9 @@ button {
     justify-content: center;
     margin: 10px;
     gap: 20px;
+}
+.btn-container .toggled-on {
+    background-color: lightgray;
 }
 
 
