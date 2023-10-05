@@ -37,9 +37,8 @@ button {
     /* 100 divided by size of grid gives percent for flex basis */
     flex-basis: 6.25%;
 }
-.draw-area div:hover {
-    background-color: #000;
-}
+
+
 .grid-lines {
     border: 1px solid lightgray;
 }

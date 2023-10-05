@@ -32,7 +32,6 @@ let drawing = false;
 let squares = [];
 
 function createGrid() {
-
     if (drawArea.childElementCount !== 0) {
         drawArea.innerHTML = '';
         size = myRange.value;
@@ -49,13 +48,11 @@ function createGrid() {
     };
 
     squares = [...drawArea.children];
-
 };
 createGrid();
 
 
 function updateNewColor(createNewColor) {
-    console.log(createNewColor);
     newColor.style.backgroundColor = `rgb(${createNewColor.red},${createNewColor.green},${createNewColor.blue})`;
 };
 
@@ -86,9 +83,11 @@ blueSlider.oninput = () => {
 
 
 
-
 window.addEventListener('mousedown', () => drawing = true);
-window.addEventListener('mouseup', () => drawing = false);
+window.addEventListener('mouseup', (e) => {
+    e.target.classList.add('clicked');
+    drawing = false;
+});
 
 drawArea.addEventListener('mousedown', (e) => {
     if (e.target.classList.contains('square')) {
@@ -96,9 +95,20 @@ drawArea.addEventListener('mousedown', (e) => {
     };
 });
 
+let previousColor;
 drawArea.addEventListener('mouseover', (e) => {
-    if (drawing === true && e.target.classList.contains('square')) {
+    if (e.target.classList.contains('square')){
+        previousColor = e.target.style.backgroundColor;
         e.target.style.backgroundColor = color;
+    };
+});
+
+drawArea.addEventListener('mouseout', (e) => {
+    if (!drawing && !e.target.classList.contains('clicked')) {
+        e.target.style.backgroundColor = previousColor;
+        previousColor = null;
+    } else if (e.target.classList.contains('clicked')) {
+        e.target.classList.remove('clicked');
     };
 });
 
