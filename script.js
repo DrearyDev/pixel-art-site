@@ -199,7 +199,7 @@ window.addEventListener('mouseup', (e) => {
 
 drawArea.addEventListener('mousedown', (e) => {
     if (e.target.classList.contains('square') && !randomColorsBtn.classList.contains('toggled-on')) {
-        e.target.style.backgroundColor = color;
+        e.target.classList.add('clicked');
     } else if (e.target.classList.contains('square')) {
         e.target.style.backgroundColor = getRandomColor();
     };
@@ -221,6 +221,7 @@ drawArea.addEventListener('mouseout', (e) => {
         previousColor = null;
     } else if (e.target.classList.contains('clicked')) {
         e.target.classList.remove('clicked');
+        e.target.style.backgroundColor = color;
     };
 });
 
