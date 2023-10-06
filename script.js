@@ -16,6 +16,9 @@ const greenDisplay = document.querySelector('.green-display');
 const blueSlider = document.getElementById('blue-slider');
 const blueDisplay = document.querySelector('.blue-display');
 
+const alphaSlider = document.getElementById('alpha-slider');
+const alphaDisplay = document.querySelector('.alpha-display');
+
 const oldColors = document.querySelector('.old-colors');
 
 const randomColorsBtn = document.querySelector('.random-colors');
@@ -30,10 +33,12 @@ newColor.style.backgroundColor = color;
 redSlider.value = 0;
 greenSlider.value = 0;
 blueSlider.value = 0;
+alphaSlider.value = 10;
 let createNewColor = {
     red: 0,
     green: 0,
-    blue: 0
+    blue: 0,
+    alpha: 1
 };
 let drawing = false;
 let squares = [];
@@ -61,7 +66,7 @@ createGrid();
 
 
 function updateNewColor(createNewColor) {
-    newColor.style.backgroundColor = `rgb(${createNewColor.red},${createNewColor.green},${createNewColor.blue})`;
+    newColor.style.backgroundColor = `rgba(${createNewColor.red},${createNewColor.green},${createNewColor.blue},${createNewColor.alpha})`;
 };
 
 setColor.addEventListener('click', () => {
@@ -88,6 +93,13 @@ blueSlider.oninput = () => {
     updateNewColor(createNewColor);
 };
 
+alphaSlider.oninput = () => {
+    alphaDisplay.textContent = `Alpha Value: ${alphaSlider.value}`;
+    createNewColor.alpha = Number(alphaSlider.value / 10);
+
+    updateNewColor(createNewColor);
+};
+
 function handleOldColors(oldColor) {
     const div = document.createElement('div');
     div.classList.add('old-color');
@@ -103,7 +115,13 @@ function handleOldColors(oldColor) {
 };
 
 oldColors.addEventListener('click', (e) => {
-    let rgbString = e.target.style.backgroundColor.replace('rgb(', '');
+    let rgbString = e.target.style.backgroundColor;
+
+    if (rgbString.indexOf('a') === -1){//if it doesnt exist so its rgb not rgba
+        rgbString = rgbString.replace('rgb(', '');
+    };
+
+    rgbString = rgbString.replace('rgba(', '');
 
     rgbString = rgbString.replace(')', '');
     rgbString = rgbString.replaceAll(' ', '');
@@ -121,6 +139,16 @@ oldColors.addEventListener('click', (e) => {
     blueDisplay.textContent = `Blue Value: ${rgbString[2]}`;
     createNewColor.blue = rgbString[2];
 
+    if (rgbString[3] !== undefined) {
+        alphaSlider.value = rgbString[3] * 10;
+        alphaDisplay.textContent = `Alpha Value: ${rgbString[3] * 10}`;
+        createNewColor.alpha = rgbString[3];
+    } else {
+        alphaSlider.value = 10;
+        alphaDisplay.textContent = `Alpha Value: ${10}`;
+        createNewColor.alpha = 1;
+    };
+
     updateNewColor(createNewColor);
 
 });
@@ -133,10 +161,12 @@ function getRandomColor(){
     let r = Math.floor(Math.random() * 255 + 1);
     let g = Math.floor(Math.random() * 255 + 1);
     let b = Math.floor(Math.random() * 255 + 1);
+    let a = Math.floor(Math.random() * 10 + 1);
 
     createNewColor.red = r;
     createNewColor.green = g;
     createNewColor.blue = b;
+    createNewColor.alpha = a;
 
     redSlider.value = r;
     redDisplay.textContent = `Red Value: ${r}`;
@@ -147,12 +177,15 @@ function getRandomColor(){
     blueSlider.value = b;
     blueDisplay.textContent = `Blue Value: ${b}`;
 
+    alphaSlider.value = a;
+    alphaDisplay.textContent = `Alpha Value: ${a}`;
+
     updateNewColor(createNewColor);
     currentColor.style.backgroundColor = newColor.style.backgroundColor;
     color = currentColor.style.backgroundColor;
     handleOldColors(color);
 
-    return `rgb(${r},${g},${b})`;
+    return `rgba(${r},${g},${b},${a})`;
 };
 
 
