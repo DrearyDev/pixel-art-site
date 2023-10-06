@@ -94,7 +94,12 @@ function handleOldColors(oldColor) {
     div.setAttribute('ondragstart', 'return false');
     div.style.backgroundColor = oldColor;
     oldColors.appendChild(div);
-    oldColorsArray = [...oldColors.children];
+
+    // remove overflow old colors
+    if (oldColors.children.length > 5) {
+        const oldColorsChildren = document.querySelectorAll('.old-color');
+        oldColorsChildren[0].remove();
+    };
 };
 
 oldColors.addEventListener('click', (e) => {
@@ -145,6 +150,7 @@ function getRandomColor(){
     updateNewColor(createNewColor);
     currentColor.style.backgroundColor = newColor.style.backgroundColor;
     color = currentColor.style.backgroundColor;
+    handleOldColors(color);
 
     return `rgb(${r},${g},${b})`;
 };
