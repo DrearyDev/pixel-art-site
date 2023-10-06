@@ -18,10 +18,13 @@ const blueDisplay = document.querySelector('.blue-display');
 
 const oldColors = document.querySelector('.old-colors');
 
+const randomColorsBtn = document.querySelector('.random-colors');
+
 let size = 16;
 myRange.value = size;
 let basisPercent = (100/size) + '%'; //percent one square should take up in drawArea
 let color = '#000';
+let previousColor;
 currentColor.style.backgroundColor = color;
 newColor.style.backgroundColor = color;
 redSlider.value = 0;
@@ -117,8 +120,34 @@ oldColors.addEventListener('click', (e) => {
 
 });
 
+randomColorsBtn.addEventListener('click', () => {
+    randomColorsBtn.classList.toggle('toggled-on');
+});
 
+function getRandomColor(){
+    let r = Math.floor(Math.random() * 255 + 1);
+    let g = Math.floor(Math.random() * 255 + 1);
+    let b = Math.floor(Math.random() * 255 + 1);
 
+    createNewColor.red = r;
+    createNewColor.green = g;
+    createNewColor.blue = b;
+
+    redSlider.value = r;
+    redDisplay.textContent = `Red Value: ${r}`;
+
+    greenSlider.value = g;
+    greenDisplay.textContent = `Green Value: ${g}`;
+
+    blueSlider.value = b;
+    blueDisplay.textContent = `Blue Value: ${b}`;
+
+    updateNewColor(createNewColor);
+    currentColor.style.backgroundColor = newColor.style.backgroundColor;
+    color = currentColor.style.backgroundColor;
+
+    return `rgb(${r},${g},${b})`;
+};
 
 
 window.addEventListener('mousedown', () => drawing = true);
@@ -130,16 +159,20 @@ window.addEventListener('mouseup', (e) => {
 });
 
 drawArea.addEventListener('mousedown', (e) => {
-    if (e.target.classList.contains('square')) {
+    if (e.target.classList.contains('square') && !randomColorsBtn.classList.contains('toggled-on')) {
         e.target.style.backgroundColor = color;
+    } else if (e.target.classList.contains('square')) {
+        e.target.style.backgroundColor = getRandomColor();
     };
 });
 
-let previousColor;
 drawArea.addEventListener('mouseover', (e) => {
-    if (e.target.classList.contains('square')){
+    if (e.target.classList.contains('square') && !randomColorsBtn.classList.contains('toggled-on')){
         previousColor = e.target.style.backgroundColor;
         e.target.style.backgroundColor = color;
+    } else if (e.target.classList.contains('square')) {
+        previousColor = e.target.style.backgroundColor;
+        e.target.style.backgroundColor = getRandomColor()
     };
 });
 
